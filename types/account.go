@@ -113,3 +113,8 @@ func getFromBech32(bech32str, prefix string) ([]byte, error) {
 
 	return bz, nil
 }
+
+
+func AddressToBytes(addr Address) []byte {
+	return []byte(addr.String())
+}
