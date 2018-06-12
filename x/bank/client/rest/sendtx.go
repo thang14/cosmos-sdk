@@ -28,6 +28,7 @@ type sendBody struct {
 	Password         string    `json:"password"`
 	ChainID          string    `json:"chain_id"`
 	Sequence         int64     `json:"sequence"`
+	Gas              int64     `json:"gas"`
 }
 
 var msgCdc = wire.NewCodec()
@@ -80,7 +81,19 @@ func SendRequestHandlerFn(cdc *wire.Codec, kb keys.Keybase, ctx context.CoreCont
 		}
 
 		// sign
-		ctx = ctx.WithSequence(m.Sequence)
+		ctx, err := context.EnsureSequence(ctx.WithFromAddressName(m.LocalAccountName))
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
+			return
+		}
+
+		if m.Gas == 0 {
+			m.Gas = 20000
+		}
+
+		ctx = ctx.WithGas(m.Gas)
+
 		txBytes, err := ctx.SignAndBuild(m.LocalAccountName, m.Password, msg, cdc)
 		if err != nil {
 			w.WriteHeader(http.StatusUnauthorized)
