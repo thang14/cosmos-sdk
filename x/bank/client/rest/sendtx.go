@@ -27,6 +27,7 @@ type sendBody struct {
 	LocalAccountName string    `json:"name"`
 	Password         string    `json:"password"`
 	ChainID          string    `json:"chain_id"`
+	AccountNumber    int64     `json:"account_number"`
 	Sequence         int64     `json:"sequence"`
 	Gas              int64     `json:"gas"`
 }
@@ -42,7 +43,14 @@ func SendRequestHandlerFn(cdc *wire.Codec, kb keys.Keybase, ctx context.CoreCont
 	return func(w http.ResponseWriter, r *http.Request) {
 		// collect data
 		vars := mux.Vars(r)
-		address := vars["address"]
+		bech32addr := vars["address"]
+
+		address, err := sdk.GetAccAddressBech32(bech32addr)
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(err.Error()))
+			return
+		}
 
 		var m sendBody
 		body, err := ioutil.ReadAll(r.Body)
@@ -65,7 +73,7 @@ func SendRequestHandlerFn(cdc *wire.Codec, kb keys.Keybase, ctx context.CoreCont
 			return
 		}
 
-		to, err := sdk.GetAccAddressHex(address)
+		to, err := sdk.GetAccAddressHex(address.String())
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(err.Error()))
@@ -80,8 +88,17 @@ func SendRequestHandlerFn(cdc *wire.Codec, kb keys.Keybase, ctx context.CoreCont
 			return
 		}
 
+		// add gas to context
+		ctx = ctx.WithGas(m.Gas)
+
 		// sign
+<<<<<<< HEAD
 		ctx, err := context.EnsureSequence(ctx.WithFromAddressName(m.LocalAccountName))
+=======
+		ctx = ctx.WithAccountNumber(m.AccountNumber)
+
+		ctx, err := context.EnsureSequence(ctx)
+>>>>>>> origin/release/0.2.0
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(err.Error()))
