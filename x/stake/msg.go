@@ -12,7 +12,7 @@ const MsgType = "stake"
 // initialize at genesis - to allow for the same tests we should should make
 // the ValidateBasic() function a return from an initializable function
 // ValidateBasic(bondDenom string) function
-const StakingToken = "steak"
+const StakingToken = "tomato"
 
 //Verify interface at compile time
 var _, _, _, _ sdk.Msg = &MsgCreateValidator{}, &MsgEditValidator{}, &MsgDelegate{}, &MsgUnbond{}

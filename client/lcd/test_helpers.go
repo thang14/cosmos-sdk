@@ -91,7 +91,7 @@ func CreateAddr(t *testing.T, name, password string, kb crkeys.Keybase) (addr sd
 
 // strt TM and the LCD in process, listening on their respective sockets
 //   nValidators = number of validators
-//   initAddrs = accounts to initialize with some steaks
+//   initAddrs = accounts to initialize with some tomatos
 func InitializeTestLCD(t *testing.T, nValidators int, initAddrs []sdk.Address) (cleanup func(), validatorsPKs []crypto.PubKey, port string) {
 
 	config := GetConfig()
@@ -143,7 +143,7 @@ func InitializeTestLCD(t *testing.T, nValidators int, initAddrs []sdk.Address) (
 	// add some tokens to init accounts
 	for _, addr := range initAddrs {
 		accAuth := auth.NewBaseAccountWithAddress(addr)
-		accAuth.Coins = sdk.Coins{sdk.NewCoin("steak", 100)}
+		accAuth.Coins = sdk.Coins{sdk.NewCoin("tomato", 100)}
 		acc := gapp.NewGenesisAccount(&accAuth)
 		genesisState.Accounts = append(genesisState.Accounts, acc)
 	}

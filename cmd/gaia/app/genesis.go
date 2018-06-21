@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/spf13/pflag"
 	crypto "github.com/tendermint/go-crypto"
 	tmtypes "github.com/tendermint/tendermint/types"
@@ -150,11 +151,11 @@ func GaiaAppGenState(cdc *wire.Codec, appGenTxs []json.RawMessage) (genesisState
 			return
 		}
 
-		// create the genesis account, give'm few steaks and a buncha token with there name
+		// create the genesis account, give'm few tomatos and a buncha token with there name
 		accAuth := auth.NewBaseAccountWithAddress(genTx.Address)
 		accAuth.Coins = sdk.Coins{
 			{genTx.Name + "Token", sdk.NewInt(1000)},
-			{"steak", freeFermionsAcc},
+			{"tomato", freeFermionsAcc},
 		}
 		acc := NewGenesisAccount(&accAuth)
 		genaccs[i] = acc

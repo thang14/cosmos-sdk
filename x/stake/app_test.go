@@ -93,8 +93,8 @@ func checkDelegation(t *testing.T, mapp *mock.App, keeper Keeper, delegatorAddr,
 func TestStakeMsgs(t *testing.T) {
 	mapp, keeper := getMockApp(t)
 
-	genCoin := sdk.NewCoin("steak", 42)
-	bondCoin := sdk.NewCoin("steak", 10)
+	genCoin := sdk.NewCoin("tomato", 42)
+	bondCoin := sdk.NewCoin("tomato", 10)
 
 	acc1 := &auth.BaseAccount{
 		Address: addr1,

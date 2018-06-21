@@ -15,10 +15,10 @@ type Address = cmn.HexBytes
 
 // Bech32 prefixes
 const (
-	Bech32PrefixAccAddr = "cosmosaccaddr"
-	Bech32PrefixAccPub  = "cosmosaccpub"
-	Bech32PrefixValAddr = "cosmosvaladdr"
-	Bech32PrefixValPub  = "cosmosvalpub"
+	Bech32PrefixAccAddr = "ichainaccaddr"
+	Bech32PrefixAccPub  = "ichainaccpub"
+	Bech32PrefixValAddr = "ichainvaladdr"
+	Bech32PrefixValPub  = "ichainvalpub"
 )
 
 // Bech32ifyAcc takes Address and returns the bech32 encoded string

@@ -53,8 +53,8 @@ func TestSameDenomAsCoin(t *testing.T) {
 		{NewCoin("A", 1), NewCoin("A", 1), true},
 		{NewCoin("A", 1), NewCoin("a", 1), false},
 		{NewCoin("a", 1), NewCoin("b", 1), false},
-		{NewCoin("steak", 1), NewCoin("steak", 10), true},
-		{NewCoin("steak", -11), NewCoin("steak", 10), true},
+		{NewCoin("tomato", 1), NewCoin("tomato", 10), true},
+		{NewCoin("tomato", -11), NewCoin("tomato", 10), true},
 	}
 
 	for _, tc := range cases {
@@ -94,8 +94,8 @@ func TestIsEqualCoin(t *testing.T) {
 		{NewCoin("A", 1), NewCoin("A", 1), true},
 		{NewCoin("A", 1), NewCoin("a", 1), false},
 		{NewCoin("a", 1), NewCoin("b", 1), false},
-		{NewCoin("steak", 1), NewCoin("steak", 10), false},
-		{NewCoin("steak", -11), NewCoin("steak", 10), false},
+		{NewCoin("tomato", 1), NewCoin("tomato", 10), false},
+		{NewCoin("tomato", -11), NewCoin("tomato", 10), false},
 	}
 
 	for _, tc := range cases {

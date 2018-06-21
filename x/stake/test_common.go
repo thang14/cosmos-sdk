@@ -63,7 +63,7 @@ func paramsNoInflation() Params {
 		InflationMin:        sdk.ZeroRat(),
 		GoalBonded:          sdk.NewRat(67, 100),
 		MaxValidators:       100,
-		BondDenom:           "steak",
+		BondDenom:           "tomato",
 	}
 }
 

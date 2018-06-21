@@ -194,8 +194,8 @@ func TestValidators(t *testing.T) {
 
 	assert.NotEqual(t, rpc.ResultValidatorsOutput{}, resultVals)
 
-	assert.Contains(t, resultVals.Validators[0].Address, "cosmosvaladdr")
-	assert.Contains(t, resultVals.Validators[0].PubKey, "cosmosvalpub")
+	assert.Contains(t, resultVals.Validators[0].Address, "ichainvaladdr")
+	assert.Contains(t, resultVals.Validators[0].PubKey, "ichainvalpub")
 
 	// --
 
@@ -243,7 +243,7 @@ func TestCoinSend(t *testing.T) {
 	coins := acc.GetCoins()
 	mycoins := coins[0]
 
-	assert.Equal(t, "steak", mycoins.Denom)
+	assert.Equal(t, "tomato", mycoins.Denom)
 	assert.Equal(t, initialBalance[0].Amount.SubRaw(1), mycoins.Amount)
 
 	// query receiver
@@ -251,7 +251,7 @@ func TestCoinSend(t *testing.T) {
 	coins = acc.GetCoins()
 	mycoins = coins[0]
 
-	assert.Equal(t, "steak", mycoins.Denom)
+	assert.Equal(t, "tomato", mycoins.Denom)
 	assert.Equal(t, int64(1), mycoins.Amount.Int64())
 }
 
@@ -278,7 +278,7 @@ func TestIBCTransfer(t *testing.T) {
 	coins := acc.GetCoins()
 	mycoins := coins[0]
 
-	assert.Equal(t, "steak", mycoins.Denom)
+	assert.Equal(t, "tomato", mycoins.Denom)
 	assert.Equal(t, initialBalance[0].Amount.SubRaw(1), mycoins.Amount)
 
 	// TODO: query ibc egress packet state
@@ -369,7 +369,7 @@ func TestValidatorsQuery(t *testing.T) {
 }
 
 func TestBonding(t *testing.T) {
-	name, password, denom := "test", "1234567890", "steak"
+	name, password, denom := "test", "1234567890", "tomato"
 	addr, seed := CreateAddr(t, "test", password, GetKB(t))
 	cleanup, pks, port := InitializeTestLCD(t, 2, []sdk.Address{addr})
 	defer cleanup()
@@ -444,7 +444,7 @@ func doSend(t *testing.T, port, seed, name, password string, addr sdk.Address) (
 	chainID := viper.GetString(client.FlagChainID)
 
 	// send
-	coinbz, err := json.Marshal(sdk.NewCoin("steak", 1))
+	coinbz, err := json.Marshal(sdk.NewCoin("tomato", 1))
 	if err != nil {
 		panic(err)
 	}
@@ -493,7 +493,7 @@ func doIBCTransfer(t *testing.T, port, seed, name, password string, addr sdk.Add
 				"amount": 1
 			}
 		]
-	}`, name, password, accnum, sequence, "steak"))
+	}`, name, password, accnum, sequence, "tomato"))
 	res, body := Request(t, port, "POST", "/ibc/testchain/"+receiveAddrBech+"/send", jsonStr)
 	require.Equal(t, http.StatusOK, res.StatusCode, body)
 
@@ -541,7 +541,7 @@ func doBond(t *testing.T, port, seed, name, password string, delegatorAddr, vali
 			}
 		],
 		"unbond": []
-	}`, name, password, accnum, sequence, delegatorAddrBech, validatorAddrBech, "steak"))
+	}`, name, password, accnum, sequence, delegatorAddrBech, validatorAddrBech, "tomato"))
 	res, body := Request(t, port, "POST", "/stake/delegations", jsonStr)
 	require.Equal(t, http.StatusOK, res.StatusCode, body)
 

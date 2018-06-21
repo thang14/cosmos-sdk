@@ -89,30 +89,14 @@ func SendRequestHandlerFn(cdc *wire.Codec, kb keys.Keybase, ctx context.CoreCont
 		}
 
 		// add gas to context
+		// add gas to context
 		ctx = ctx.WithGas(m.Gas)
 		// add chain-id to context
 		ctx = ctx.WithChainID(m.ChainID)
 
 		// sign
-<<<<<<< HEAD
-		ctx, err := context.EnsureSequence(ctx.WithFromAddressName(m.LocalAccountName))
-=======
 		ctx = ctx.WithAccountNumber(m.AccountNumber)
-
-		ctx, err := context.EnsureSequence(ctx)
->>>>>>> origin/release/0.2.0
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte(err.Error()))
-			return
-		}
-
-		if m.Gas == 0 {
-			m.Gas = 20000
-		}
-
-		ctx = ctx.WithGas(m.Gas)
-
+		ctx = ctx.WithSequence(m.Sequence)
 		txBytes, err := ctx.SignAndBuild(m.LocalAccountName, m.Password, msg, cdc)
 		if err != nil {
 			w.WriteHeader(http.StatusUnauthorized)

@@ -209,11 +209,11 @@ gaiad tendermint show_validator
 
 Next, craft your `gaiacli stake create-validator` command:
 
-> _*NOTE:*_  Don't use more `steak` thank you have! You can always get more by using the [Faucet](https://faucetcosmos.network/)!
+> _*NOTE:*_  Don't use more `tomato` thank you have! You can always get more by using the [Faucet](https://faucetcosmos.network/)!
 
 ```bash
 gaiacli stake create-validator \
-  --amount=5steak \
+  --amount=5tomato \
   --pubkey=$(gaiad tendermint show_validator) \
   --address-validator=<account_cosmosaccaddr>
   --moniker=<choose_a_moniker> \
@@ -302,11 +302,11 @@ On the upcoming mainnet, you can delegate `atom` to a validator. These [delegato
 
 ### Bond Tokens
 
-On the testnet, we delegate `steak` instead of `atom`. Here's how you can bond tokens to a testnet validator:
+On the testnet, we delegate `tomato` instead of `atom`. Here's how you can bond tokens to a testnet validator:
 
 ```bash
 gaiacli stake delegate \
-  --amount=10steak \
+  --amount=10tomato \
   --address-delegator=<account_cosmosaccaddr> \
   --address-validator=$(gaiad tendermint show_validator) \
   --name=<key_name> \
@@ -315,7 +315,7 @@ gaiacli stake delegate \
 
 While tokens are bonded, they are pooled with all the other bonded tokens in the network. Validators and delegators obtain a percentage of shares that equal their stake in this pool.
 
-> _*NOTE:*_  Don't use more `steak` thank you have! You can always get more by using the [Faucet](https://faucetcosmos.network/)!
+> _*NOTE:*_  Don't use more `tomato` thank you have! You can always get more by using the [Faucet](https://faucetcosmos.network/)!
 
 ### Unbond Tokens
 

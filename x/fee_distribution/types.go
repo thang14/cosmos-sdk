@@ -42,7 +42,7 @@ package stake
 
 //func defaultParams() Params {
 //return Params{
-//FeeDenoms:      []string{"steak"},
+//FeeDenoms:      []string{"tomato"},
 //ReservePoolFee: sdk.NewRat(5, 100),
 //}
 //}

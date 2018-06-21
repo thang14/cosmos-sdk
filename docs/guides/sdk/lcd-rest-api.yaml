@@ -573,7 +573,7 @@ definitions:
     properties:
       denom:
         type: string
-        example: steak
+        example: tomato
       amount:
         type: number
         example: 50

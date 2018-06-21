@@ -19,7 +19,7 @@ func newTestMsgCreateValidator(address sdk.Address, pubKey crypto.PubKey, amt sd
 		Description:   Description{},
 		ValidatorAddr: address,
 		PubKey:        pubKey,
-		Bond:          sdk.Coin{"steak", amt},
+		Bond:          sdk.Coin{"tomato", amt},
 	}
 }
 
@@ -27,7 +27,7 @@ func newTestMsgDelegate(delegatorAddr, validatorAddr sdk.Address, amt sdk.Int) M
 	return MsgDelegate{
 		DelegatorAddr: delegatorAddr,
 		ValidatorAddr: validatorAddr,
-		Bond:          sdk.Coin{"steak", amt},
+		Bond:          sdk.Coin{"tomato", amt},
 	}
 }
 

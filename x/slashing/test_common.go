@@ -92,6 +92,6 @@ func newTestMsgCreateValidator(address sdk.Address, pubKey crypto.PubKey, amt sd
 		Description:   stake.Description{},
 		ValidatorAddr: address,
 		PubKey:        pubKey,
-		Bond:          sdk.Coin{"steak", amt},
+		Bond:          sdk.Coin{"tomato", amt},
 	}
 }
